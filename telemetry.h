@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -55,6 +57,23 @@ typedef struct __attribute__((packed)) {
 	uint8_t RFU[24];	       // -not used- reserved for future use
 	uint16_t CRC;
 } vector_telemetry_t; // 97 bytes
+
+struct rssi_data_t {
+	int8_t signal;
+	uint32_t lostpackets;
+	int8_t signal_rc;
+	uint32_t lostpackets_rc;
+	uint8_t cpuload;
+	uint8_t temp;
+	uint32_t injected_block_cnt;
+	uint32_t skipped_fec_cnt;
+	uint32_t injection_fail_cnt;
+	uint64_t injection_time_block;
+	uint16_t bitrate_kbit;
+	uint16_t bitrate_measured_kbit;
+	uint8_t cts;
+	uint8_t undervolt;
+} __attribute__((__packed__));
 
 #ifdef __cplusplus
 }
